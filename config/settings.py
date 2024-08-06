@@ -8,6 +8,13 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
+
+데이터베이스 설정
+템플릿 설정
+지역 시각 및 다국어 설정
+애플리케이션의 등록
+정적 파일 설정
+미디어 파일 설정
 """
 
 from pathlib import Path
@@ -54,7 +61,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [], # templates 디렉토리 이름을 변경하고자 할 경우 DIRS 변수를 수정한다. ex)'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,11 +82,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'loamoa_postgresql',                    # RDS 데이터베이스 이름
+        'USER': 'loamoa',                               # RDS 사용자 이름
+        'PASSWORD': 'tmddlsgowntpdy68',                 # RDS 비밀번호
+        'HOST': '13.211.237.144',                       # RDS 엔드포인트
+        'PORT': '5432',                                 # 기본 포트
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -103,9 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
